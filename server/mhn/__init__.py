@@ -1,6 +1,6 @@
 from urlparse import urljoin
 
-from flask import Flask, request, jsonify, abort, url_for
+from flask import Flask, request, jsonify, abort, url_for, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.security import Security, SQLAlchemyUserDatastore
 from flask.ext.security.utils import encrypt_password as encrypt
@@ -8,6 +8,10 @@ from flask.ext.mail import Mail
 from werkzeug.contrib.atom import AtomFeed
 import xmltodict
 import uuid
+import random
+import string
+from flask_wtf.csrf import CsrfProtect
+csrf = CsrfProtect()
 
 db = SQLAlchemy()
 # After defining `db`, import auth models due to
@@ -18,6 +22,7 @@ user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 
 mhn = Flask(__name__)
 mhn.config.from_object('config')
+csrf.init_app(mhn)
 
 # Email app setup.
 mail = Mail()
@@ -138,7 +143,11 @@ def create_clean_db():
             'Ubuntu - Kippo': path.abspath('../scripts/deploy_kippo.sh'),
             'Ubuntu - Amun': path.abspath('../scripts/deploy_amun.sh'),
             'Ubuntu - Glastopf': path.abspath('../scripts/deploy_glastopf.sh'),
-            'Raspberry Pi - Dionaea': path.abspath('../scripts/deploy_raspberrypi.sh'),
+            'Ubuntu - Wordpot': path.abspath('../scripts/deploy_wordpot.sh'),
+            'Ubuntu - Shockpot': path.abspath('../scripts/deploy_shockpot.sh'),
+            'Ubuntu - p0f': path.abspath('../scripts/deploy_p0f.sh'),
+            'Ubuntu - Suricata': path.abspath('../scripts/deploy_suricata.sh'),
+            #'Raspberry Pi - Dionaea': path.abspath('../scripts/deploy_raspberrypi.sh'),
         }
         for honeypot, deploypath in deployscripts.iteritems():
 

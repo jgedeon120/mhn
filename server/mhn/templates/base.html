@@ -23,7 +23,7 @@
                     <li><a href="{{ url_for('ui.honeymap') }}">Map</a></li>
                     <li><a href="{{ url_for('ui.deploy_mgmt') }}">Deploy</a></li>
                     <li><a href="{{ url_for('ui.get_attacks') }}">Attacks</a></li>
-                    <li><a href="{{ url_for('ui.get_feeds', channel='snort.alerts') }}">Feeds</a></li>
+                    <li><a href="{{ url_for('ui.get_feeds', channel='snort.alerts') }}">Payloads</a></li>
                     <li class="has-dropdown">
                         <a href="{{ url_for('ui.get_rules') }}">Rules</a>
                         <ul class="dropdown">
@@ -68,7 +68,7 @@
         <div class="row" id="footer">
             <div class="small-7 large-centered columns">
                 <span><small>Modern Honeynet Framework is an open source project by: </small><span>
-                <a href="https://threatstream.com"><img width="158" height="25" src="/static/img/tslogo.png" /></a>
+                <a href="http://threatstream.com"><img width="158" height="25" src="/static/img/tslogo.png" /></a>
             </div>
         </div>
         {% endblock %}
